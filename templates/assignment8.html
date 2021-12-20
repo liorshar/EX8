@@ -1,0 +1,11 @@
+{% extends 'BasePage.html' %}
+{% block title %}Movies{% endblock %}
+{%  block text %}
+    {{  super() }}
+    <h1> My Favorite Movies:</h1>
+    <ul>
+        {% for movie in MoviesList %}
+            <li>{{ movie |default('Movie Name', true) | upper() }}</li>
+        {%  endfor%}
+    </ul>
+{% endblock %}

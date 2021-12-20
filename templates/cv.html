@@ -1,0 +1,43 @@
+{% extends 'BasePage.html' %}
+{% block title %}CV{% endblock%}
+{% block text %}
+{{  super() }}
+    <div id="gridContainer">
+
+        <div id="itemA">
+            <h1>Lior Sharabi - CV</h1> 
+            <h2>Background</h2>
+            <p>
+                I am a quick learner and a strong team player with interpersonal skills.<br>
+                Motivated with a strong result focused approach, a positive attitude and dedication for excellence.<br>
+                Data-driven enthusiastic.
+            </p>
+            <h2>Education</h2>
+            <p>
+                Student of Bachelor of Science (B.Sc.), Industrial Engineering and Management, Ben Gurion University.<br>
+                Main Specialization - Information Technologies.<br>
+                GPA of 84.
+            </p>
+            <h2>Work experience</h2>
+            <p>
+                Restaurant shift manager - Team management, personnel training, dealing with customers and suppliers.
+            </p>
+        </div>    
+
+        <div id="itemB">
+            <h2>Contact Form</h2>
+            <form>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name ="name" required><br><br>
+                <label for="E-mail">Email:</label><br>
+                <input type="email" id="E-mail" name ="E-mail" required><br><br>
+                <p id="valid1"></p>
+                <label for="note">Comment:</label><br>
+                <textarea id="note" name="note" rows="3" cols="10" minlength="10" required></textarea><br>
+                <p id="valid2"></p>
+                <button id="Send" onclick="checkValid1('E-mail','valid1'),checkValid2('note','valid2')">Send</button>
+            </form> 
+        </div>
+
+    </div>    
+{% endblock %}

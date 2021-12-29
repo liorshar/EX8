@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cv.css') }}">
 </head>
     <body>
-        {% block text %}{% endblock %}
+        {% block text %}
+            {% if session.userName %}
+                <h1>Welcome, {{ session.userName }}</h1>
+            {% endif %}
+        {% endblock %}
         {% include 'footer.html' %}
+
     </body>
 </html>

@@ -1,0 +1,57 @@
+{% extends 'BasePage.html' %}
+{% block title %}assignment9{% endblock%}
+
+{% block text %}
+    <div id="gridContainer">
+
+            <form action="/assignment9" method="POST">
+                {% if session.userName %}
+                    <h2>Welcome, {{ session.userName }}</h2>
+                    <button id="logOut" name=" logOut ">log out</button>
+                {% else %}
+                    <h2>Registration Form</h2>
+                    <label for=" username ">User Name:</label><br>
+                    <input type="text" id="username" name ="username" required><br><br>
+                    <label for="Email">Email:</label><br>
+                    <input type="email" id="Email" name ="Email" required><br><br>
+                    <p id="note1"></p>
+                    <button id="send" onclick="validationEmail('Email','note1')">Send Form</button>
+                {% endif %}
+            </form>
+
+            <h2>Search Form</h2>
+            <form action="/assignment9" method="GET">
+                <label for=" Email ">User Email:</label><br>
+                <input type="email" id="Email" name ="Email"><br><br>
+                <button id="search" name="search">Search</button>
+            </form>
+
+	    {% if notFound %}
+            <h3>User not found</h3>
+        {% endif %}
+
+        {% if foundUser %}
+            <h1>User information</h1>
+            <ul>
+                {% for key, val in foundUser.items() %}
+                    <li>{{ key|e }} : {{ val |e }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if allUsers %}
+            <h1> Information for all users </h1>
+            {% for i in allUsers %}
+               <ul>
+                    {% for key, val in allUsers[i].items() %}
+                        <li>
+                            {{ key|e }} : {{ val|e }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endif %}
+
+
+    </div>
+
+{% endblock %}

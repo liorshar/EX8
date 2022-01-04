@@ -3,6 +3,10 @@ from flask import Flask, render_template, redirect, url_for, request, session
 app = Flask(__name__)
 app.secret_key='123'
 
+from assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
+
 Users_dict = {'user1': {'name': 'Lior', 'email': 'lior@gmail.com'}, 'user2': {'name': 'Hila', 'email': 'hila@gmail.com'},
          'user3': {'name': 'Daniel', 'email': 'daniel@gmail.com'}, 'user4': {'name': 'Gadi', 'email': 'gadi@gmail.com'},
          'user5': {'name': 'Gaya', 'email': 'gaya@gmail.com'}}

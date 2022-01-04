@@ -1,0 +1,41 @@
+{% extends 'BasePage.html' %}
+{% block title %}assignment10{% endblock%}
+
+{% block text %}
+
+    <h2>update name form:</h2>
+    <form action="/new_name" method="post">
+        <input type="email" name="userEmail" placeholder="Email" required>
+        <input type="text" name="userName" placeholder="Update Name" required>
+        <input type="submit" value="Update name" onclick="update_alert()">
+    </form>
+
+    <h2>update email form:</h2>
+    <form action="/new_email" method="post">
+        <input type="text" name="userName" placeholder="Name" required>
+        <input type="email" name="userEmail" placeholder="Update Email" required>
+        <input type="submit" value="Update email" onclick="update_alert()">
+    </form>
+
+    <h2>Insert Form</h2>
+    <form action="/insert_to_db" method="post">
+        <input type="text" name="userName" placeholder="Name" required>
+        <input type="email" name="userEmail" placeholder="Email" required>
+        <input type="submit" value="Send" onclick="insert_alert()">
+    </form>
+
+
+    <h2>Users:</h2>
+    <ul>
+        {% for user in usersList %}
+            <li>
+                Name: {{ user.name }}, Email: {{ user.email }}
+                <form action="/delete_from_db" method="post" style="display: inline">
+                    <input type="hidden" name="id" value="{{ user.id }}">
+                    <input type="submit" value="delete" onclick="delete_alert()">
+                </form></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+{% block page_body_js %} <script src="{{ url_for('assignment10.static', filename='js/assignment10.js') }}"></script>{% endblock %}

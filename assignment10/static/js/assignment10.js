@@ -1,5 +1,5 @@
 function update_alert(){
-    alert("update Succeeded!")
+    alert("update Succeeded!");
 }
 
 function insert_alert(){
@@ -7,6 +7,6 @@ function insert_alert(){
 }
 
 function delete_alert(){
-    alert(" deleted Succeeded!")
+    alert(" deleted Succeeded!");
 }
 

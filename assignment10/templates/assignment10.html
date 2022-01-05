@@ -1,5 +1,6 @@
 {% extends 'BasePage.html' %}
 {% block title %}assignment10{% endblock%}
+{% block page_head_js %}<script src="{{ url_for('assignment10.static', filename='js/assignment10.js') }}"></script>{% endblock %}
 
 {% block text %}
 
@@ -38,4 +39,4 @@
     </ul>
 
 {% endblock %}
-{% block page_body_js %} <script src="{{ url_for('assignment10.static', filename='js/assignment10.js') }}"></script>{% endblock %}
+

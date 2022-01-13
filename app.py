@@ -1,4 +1,6 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, jsonify
+import requests
+from interact_with_DB import interact_db
 
 app = Flask(__name__)
 app.secret_key='123'
@@ -49,6 +51,36 @@ def assignment9_func():
             session['userName'] = username
             return redirect('/assignment9')
         return render_template('assignment9.html')
+
+@app.route('/assignment11/users')
+def users_json_func():
+    users_dict = {}
+    query = 'select * from users;'
+    users = interact_db(query=query, query_type='fetch')
+    for user in users:
+        users_dict[f'user_{user.id}'] = {
+            'name': user.name,
+            'email': user.email,
+        }
+    return jsonify(users_dict)
+
+def user_by_id(id):
+    res = requests.get(f'https://reqres.in/api/users/{id}')
+    res_json = res.json()
+    return res_json
+
+
+
+@app.route('/assignment11/outer_source', methods=['GET', 'POST'])
+def req_func():
+    if "user_id" in request.args:
+        if request.args['user_id'] == '':
+            return render_template('assignment11.html', dict='')
+        user_req = int(request.args['user_id'])
+        user = user_by_id(user_req)
+    else:
+        user = ''
+    return render_template('assignment11.html', dict=user)
 
 
 if __name__ == '__main__':

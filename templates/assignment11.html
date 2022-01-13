@@ -1,0 +1,36 @@
+{% extends 'BasePage.html' %}
+{% block title %}assignment11{% endblock%}
+{% block text %}
+    <h1>Users: </h1>
+     <form action="/assignment11/users">
+        <input type="submit" value="Get">
+    </form>
+    <br>
+
+    <h1>Request Backend:</h1>
+    <form action="/assignment11/outer_source" method="get">
+        <input type="number" name="user_id">
+        <input type="submit" value="Get">
+    </form>
+    {%  if dict != {} and dict != '' %}
+        <img src={{ dict.data.avatar }} alt="Profile_Picture"/>
+        <div>
+            <span>First Name: {{ dict.data.first_name }}</span><br>
+            <span>Last Name: {{ dict.data.last_name }}</span><br>
+            <span>ID: {{ dict.data.id}}</span><br>
+            <span>Email: {{ dict.data.email}}</span><br>
+            <br>
+        </div>
+    {% endif %}
+    <br>
+
+    <h1>Request Frontend:</h1>
+    <input name="id2" type="number" id="user_id2">
+    <button onclick="getUser()">Get</button>
+    <div> </div>
+    <script src="../static/JS/fetch.js" ></script>
+    <br>
+
+
+{% endblock %}
+

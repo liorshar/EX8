@@ -82,6 +82,25 @@ def req_func():
         user = ''
     return render_template('assignment11.html', dict=user)
 
+@app.route('/assignment12/restapi_users', defaults={'USER_ID': 2})
+@app.route('/assignment12/restapi_users/<int:USER_ID>')
+def getUserDb(USER_ID):
+    query_result = 'SELECT * FROM users WHERE id=%s;' % USER_ID
+    user_res = interact_db(query=query_result, query_type='fetch')
+    if len(user_res) == 0:
+        user_dict = {
+            'status': 'failed',
+            'message': 'user not found'
+        }
+    else:
+        user_dict = {
+            'status': 'success',
+            'id': user_res[0].id,
+            'name': user_res[0].name,
+            'email': user_res[0].email
+            }
+    return jsonify(user_dict)
+
 
 if __name__ == '__main__':
     app.run()
